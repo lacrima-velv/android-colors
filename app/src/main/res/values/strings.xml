@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Colors</string>
+    <string name="item">Item %s</string>
+    <string name="message_item_clicked">You clicked %s</string>
+</resources>

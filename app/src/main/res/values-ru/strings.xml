@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Цвета</string>
+    <string name="item">Элемент %s</string>
+    <string name="message_item_clicked">Вы нажали элемент %s</string>
+</resources>
