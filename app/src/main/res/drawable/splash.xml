@@ -6,8 +6,11 @@
     <item
         android:drawable="@color/splash_background" />
     <!-- TODO: Text inside .webp drawable doesn't scale good. Should use vector image. -->
-    <item
-        android:drawable="@drawable/splash_logo"
-        android:gravity="center" />
+    <item>
+        <bitmap
+            android:src="@drawable/splash_logo"
+            android:gravity="center">
+        </bitmap>
+    </item>
 
 </layer-list>
