@@ -3,4 +3,6 @@
     <string name="app_name">Цвета</string>
     <string name="item">Элемент %s</string>
     <string name="message_item_clicked">Вы нажали элемент %s</string>
+    <string name="logo_content_description">Лого "Удивленная жаба"</string>
+    <string name="round_content_description">Цветной кружок</string>
 </resources>

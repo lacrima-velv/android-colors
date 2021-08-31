@@ -15,7 +15,7 @@
     </style>
 
     <style name="Theme.Colors.Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:background">@color/splash_background</item>
     </style>
 
 </resources>

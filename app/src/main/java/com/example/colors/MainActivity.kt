@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
         val listOfColorsAdapter = ColorsAdapter(this, mainActivityLayout)
         binding.listOfColors.adapter = listOfColorsAdapter
 
-        // Change Theme to Default form Splash Screen Theme
-        setTheme(R.style.Theme_Colors)
         setContentView(mainActivityLayout)
     }
 

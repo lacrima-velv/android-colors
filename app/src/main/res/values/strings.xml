@@ -2,4 +2,6 @@
     <string name="app_name">Colors</string>
     <string name="item">Item %s</string>
     <string name="message_item_clicked">You clicked %s</string>
+    <string name="logo_content_description">Logo "Toad surprised"</string>
+    <string name="round_content_description">Colored round</string>
 </resources>
