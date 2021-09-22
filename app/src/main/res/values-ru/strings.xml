@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Цвета</string>
-    <string name="item">Элемент %s</string>
+    <string name="item">Элемент %d</string>
     <string name="message_item_clicked">Вы нажали элемент %s</string>
     <string name="logo_content_description">Лого "Удивленная жаба"</string>
     <string name="round_content_description">Цветной кружок</string>
+    <string name="create_new_element_content_description">Создать новый элемент</string>
+    <string name="choose_color_element">"Выберете цвет своего элемента"</string>
+    <string name="color_red">"Красный"</string>
+    <string name="color_orange">"Оранжевый"</string>
+    <string name="color_yellow">"Желтый"</string>
+    <string name="color_green">"Зеленый"</string>
+    <string name="color_light_blue">"Голубой"</string>
+    <string name="color_blue">"Синий"</string>
+    <string name="color_purple">"Фиолетовый"</string>
+    <string name="color_colorless">Бесцветный</string>
+    <string name="create_element_button">"Создать"</string>
+    <string name="delete_element_button_content_description">Удалить элемент</string>
+    <string name="delete_element_dialog_title">Вы уверенны, что хотите удалить %s?</string>
+    <string name="delete_button_in_dialog">Удалить</string>
+    <string name="delete_all_elements_button_in_menu">Удалить все элементы</string>
+    <string name="cancel_in_dialog">Отмена</string>
+    <string name="delete_all_elements_dialog_title">Вы уверенны, что хотите удалить все элементы?</string>
+    <string name="placeholder_empty_list">Список пустой.\nДобавьте новый элемент, нажав кнопку \"+\"</string>
 </resources>

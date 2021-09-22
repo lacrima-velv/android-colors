@@ -12,34 +12,39 @@
         android:id="@+id/item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:layout_marginStart="16dp"
         android:textAppearance="?attr/textAppearanceSubtitle1"
         android:textColor="@color/selector_text_state"
-        android:layout_gravity="center_vertical|end"
-        app:layout_constraintEnd_toStartOf="@+id/itemColor"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Item 1" />
-
+<!-- Actual color for content description is set in ColorsAdapter -->
     <ImageView
         android:id="@+id/itemColor"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:contentDescription="@string/round_content_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/item"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/round_icon_red" />
+        tools:srcCompat="@drawable/round_icon_red"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/deleteElement"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemColor"
+        app:srcCompat="@drawable/delete_icon"
+        android:contentDescription="@string/delete_element_button_content_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

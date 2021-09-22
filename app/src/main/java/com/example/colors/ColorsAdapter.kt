@@ -1,54 +1,75 @@
 package com.example.colors
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isInvisible
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.colors.ElementDiffCallback.getColorToContentDescriptionString
+import com.example.colors.data.Element
 import com.example.colors.databinding.ColorItemBinding
-import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
-import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.color_item.view.*
 
 class ColorsAdapter(
-    private val context: Context,
-    private val mainActivityLayout: CoordinatorLayout
-): RecyclerView.Adapter<ColorsAdapter.ColorItemViewHolder>() {
+    private val onItemClick: (String) -> Unit,
+    private val onDeleteOneElementButtonClick: (Long, String) -> Unit
+): ListAdapter<Element, ColorsAdapter.ColorItemViewHolder>(ElementDiffCallback) {
 
-    private fun createItemsList(): List<String> {
-        val listOfItems = mutableListOf<String>()
-        for (i in 0..49) {
-            listOfItems.add(context.getString(R.string.item, i.toString()))
-        }
-        Log.d("ColorsAdapter", "listOfItems is $listOfItems")
-        return listOfItems
-    }
+    inner class ColorItemViewHolder(private val binding: ColorItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+            fun bind(element: Element) {
+                binding.root.setOnClickListener {
+                    onItemClick(element.elementName)
+                }
+                // Set click listener for Delete button
+                binding.deleteElement.setOnClickListener {
+                    onDeleteOneElementButtonClick(element.id, element.elementName)
+                }
 
-    private fun createMapItemsColors(): Map<Int, Color> {
-        val listOfColors = mutableListOf<Color>()
-        val itemsColors = mutableMapOf<Int, Color>()
+                // Set text in TextView
+                binding.root.item.text = element.elementName
 
-        for (item in itemsList) {
-            for (color in Color.values()) {
-                listOfColors.add(color)
+                // Set content description for colored round image
+                binding.root.itemColor.contentDescription =
+                    getColorToContentDescriptionString(itemView.context)[element.elementColor]
+
+                // Need to change visibility to VISIBLE in case it was INVISIBLE before recycling
+                if (binding.root.itemColor.isInvisible) {
+                    binding.root.itemColor.visibility = View.VISIBLE
+                }
+
+                // Set drawable in ImageView
+                when (getItem(bindingAdapterPosition).elementColor) {
+                    Color.RED -> {
+                        binding.root.itemColor.setImageResource(R.drawable.round_icon_red)
+                    }
+                    Color.ORANGE -> {
+                        binding.root.itemColor.setImageResource(R.drawable.round_icon_orange)
+                    }
+                    Color.YELLOW -> {
+                        binding.root.itemColor.setImageResource(R.drawable.round_icon_yellow)
+                    }
+                    Color.GREEN -> {
+                        binding.root.itemColor.setImageResource(R.drawable.round_icon_green)
+                    }
+                    Color.LIGHT_BLUE -> {
+                        binding.root.itemColor.setImageResource(R.drawable.round_icon_light_blue)
+                    }
+                    Color.BLUE -> {
+                        binding.root.itemColor.setImageResource(R.drawable.round_icon_blue)
+                    }
+                    Color.PURPLE -> {
+                        binding.root.itemColor.setImageResource(R.drawable.round_icon_purple)
+                    }
+                    Color.COLORLESS -> {
+                        binding.root.itemColor.visibility = View.INVISIBLE
+                    }
+                }
             }
         }
-
-        itemsColors.apply {
-            for (i in 0..49) {
-                this[i] = listOfColors[i]
-            }
-        }
-        return itemsColors
-    }
-
-    private val itemsList = createItemsList()
-    private val mapItemsColors = createMapItemsColors()
-
-    inner class ColorItemViewHolder(val binding: ColorItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorItemViewHolder {
         return ColorItemViewHolder(
@@ -60,57 +81,29 @@ class ColorsAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: ColorItemViewHolder, position: Int) {
-        Log.d("ColorsAdapter", "MAP ${mapItemsColors[1]}")
+   override fun onBindViewHolder(holder: ColorItemViewHolder, position: Int) {
+       holder.bind(getItem(position))
+    }
+}
 
-        holder.binding.root.setOnClickListener {
-            Snackbar
-                .make(
-                    mainActivityLayout,
-                    context.getString(R.string.message_item_clicked, itemsList[position]),
-                    LENGTH_SHORT
-                )
-                .show()
-        }
-
-        // Set text in TextView
-        holder.binding.item.text = itemsList[position]
-        // Need to change visibility to VISIBLE in case it was INVISIBLE before recycling
-        if (holder.binding.itemColor.isInvisible) {
-            holder.binding.itemColor.visibility = View.VISIBLE
-        }
-        // Set drawable in ImageView
-        when (mapItemsColors[position]) {
-            Color.RED -> {
-                holder.binding.itemColor.setImageResource(R.drawable.round_icon_red)
-            }
-            Color.ORANGE -> {
-                holder.binding.itemColor.setImageResource(R.drawable.round_icon_orange)
-            }
-            Color.YELLOW -> {
-                holder.binding.itemColor.setImageResource(R.drawable.round_icon_yellow)
-            }
-            Color.GREEN -> {
-                holder.binding.itemColor.setImageResource(R.drawable.round_icon_green)
-            }
-            Color.LIGHT_BLUE -> {
-                holder.binding.itemColor.setImageResource(R.drawable.round_icon_light_blue)
-            }
-            Color.BLUE -> {
-                holder.binding.itemColor.setImageResource(R.drawable.round_icon_blue)
-            }
-            Color.PURPLE -> {
-                holder.binding.itemColor.setImageResource(R.drawable.round_icon_purple)
-            }
-            Color.COLORLESS -> {
-                holder.binding.itemColor.visibility = View.INVISIBLE
-            }
-        }
+object ElementDiffCallback : DiffUtil.ItemCallback<Element>() {
+    override fun areItemsTheSame(oldItem: Element, newItem: Element): Boolean {
+        return oldItem.id == newItem.id
     }
 
-    override fun getItemCount(): Int {
-        Log.d("ColorsAdapter", "itemsList is ${itemsList.size}")
-        return itemsList.size
+    override fun areContentsTheSame(oldItem: Element, newItem: Element): Boolean {
+        return oldItem == newItem
     }
 
+    // Function to convert Color to its human readable name for content description
+    fun getColorToContentDescriptionString(context: Context) = mapOf(
+        Color.RED to context.getString(R.string.color_red),
+        Color.ORANGE to context.getString(R.string.color_orange),
+        Color.YELLOW to context.getString(R.string.color_yellow),
+        Color.GREEN to context.getString(R.string.color_green),
+        Color.LIGHT_BLUE to context.getString(R.string.color_light_blue),
+        Color.BLUE to context.getString(R.string.color_blue),
+        Color.PURPLE to context.getString(R.string.color_purple),
+        Color.COLORLESS to context.getString(R.string.color_colorless)
+    )
 }

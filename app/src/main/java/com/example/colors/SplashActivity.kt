@@ -17,13 +17,14 @@ class SplashActivity : AppCompatActivity() {
 
         binding = ActivitySplashBinding.inflate(layoutInflater)
         val splashActivityLayout = binding.root
+
         setContentView(splashActivityLayout)
-        // Use lifecycleScope to cancell coroutine during onStop() call
+        // Use lifecycleScope to cancel coroutine during onStop() call
         lifecycleScope.launch {
             // Add custom delay before switching to MainActivity
             delay(2000L)
 
-            val intent = Intent(this@SplashActivity, MainActivity::class.java)
+            val intent = Intent(this@SplashActivity, ColorsActivity::class.java)
             startActivity(intent)
             // Close current activity
             finish()

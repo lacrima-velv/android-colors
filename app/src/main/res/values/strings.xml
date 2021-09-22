@@ -1,7 +1,25 @@
 <resources>
     <string name="app_name">Colors</string>
-    <string name="item">Item %s</string>
+    <string name="item">Item %d</string>
     <string name="message_item_clicked">You clicked %s</string>
     <string name="logo_content_description">Logo "Toad surprised"</string>
     <string name="round_content_description">Colored round</string>
+    <string name="create_new_element_content_description">Create new element</string>
+    <string name="choose_color_element">Choose color for your element</string>
+    <string name="color_red">Red</string>
+    <string name="color_orange">Orange</string>
+    <string name="color_yellow">Yellow</string>
+    <string name="color_green">Green</string>
+    <string name="color_light_blue">Light blue</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_purple">Purple</string>
+    <string name="color_colorless">Colorless</string>
+    <string name="create_element_button">Create</string>
+    <string name="delete_element_button_content_description">Delete element</string>
+    <string name="delete_element_dialog_title">Are you sure you want to delete %s?</string>
+    <string name="delete_button_in_dialog">Delete</string>
+    <string name="delete_all_elements_button_in_menu">Delete all elements</string>
+    <string name="cancel_in_dialog">Cancel</string>
+    <string name="delete_all_elements_dialog_title">Are you sure you want to delete all elements?</string>
+    <string name="placeholder_empty_list">The list is empty.\nAdd a new element by tapping \"+\" button</string>
 </resources>

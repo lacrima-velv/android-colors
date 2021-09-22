@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Theme.Colors.Element"
+            tools:context=".elementcreation.ElementCreationFragment">
+
+            <TextView
+                android:id="@+id/choose_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/choose_color_element"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/selector_text_state"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/create_element"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/create_element_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/colors_group" />
+
+            <RadioGroup
+                android:id="@+id/colors_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:divider="?android:attr/dividerHorizontal"
+                android:showDividers="middle"
+                android:checkedButton="@+id/red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/choose_color">
+
+                <RadioButton
+                    android:id="@+id/red"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/round_icon_red"
+                    android:drawablePadding="48dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/color_red"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/selector_text_state"
+                    tools:layout_editor_absoluteX="136dp"
+                    tools:layout_editor_absoluteY="207dp" />
+
+                <RadioButton
+                    android:id="@+id/orange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/round_icon_orange"
+                    android:drawablePadding="48dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/color_orange"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/selector_text_state"
+                    tools:layout_editor_absoluteX="136dp"
+                    tools:layout_editor_absoluteY="207dp" />
+
+                <RadioButton
+                    android:id="@+id/yellow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/round_icon_yellow"
+                    android:drawablePadding="48dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/color_yellow"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/selector_text_state"
+                    tools:layout_editor_absoluteX="136dp"
+                    tools:layout_editor_absoluteY="207dp" />
+
+                <RadioButton
+                    android:id="@+id/green"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/round_icon_green"
+                    android:drawablePadding="48dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/color_green"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/selector_text_state"
+                    tools:layout_editor_absoluteX="136dp"
+                    tools:layout_editor_absoluteY="207dp" />
+
+                <RadioButton
+                    android:id="@+id/light_blue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/round_icon_light_blue"
+                    android:drawablePadding="48dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/color_light_blue"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/selector_text_state"
+                    tools:layout_editor_absoluteX="136dp"
+                    tools:layout_editor_absoluteY="207dp" />
+
+                <RadioButton
+                    android:id="@+id/blue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/round_icon_blue"
+                    android:drawablePadding="48dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/color_blue"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/selector_text_state"
+                    tools:layout_editor_absoluteX="136dp"
+                    tools:layout_editor_absoluteY="207dp" />
+
+                <RadioButton
+                    android:id="@+id/purple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/round_icon_purple"
+                    android:drawablePadding="48dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/color_purple"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/selector_text_state"
+                    tools:layout_editor_absoluteX="136dp"
+                    tools:layout_editor_absoluteY="207dp" />
+
+                <RadioButton
+                    android:id="@+id/colorless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="48dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/color_colorless"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@color/selector_text_state"
+                    tools:layout_editor_absoluteX="136dp"
+                    tools:layout_editor_absoluteY="207dp" />
+
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
