@@ -6,8 +6,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.colors.Color
-import com.example.colors.R
+import com.example.colors.data.Color
 import com.example.colors.data.Element
 import com.example.colors.data.ElementViewModel
 import com.example.colors.databinding.FragmentElementCreationBinding

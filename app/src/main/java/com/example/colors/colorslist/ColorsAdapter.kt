@@ -1,4 +1,4 @@
-package com.example.colors
+package com.example.colors.colorslist
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,9 @@ import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.colors.ElementDiffCallback.getColorToContentDescriptionString
+import com.example.colors.R
+import com.example.colors.colorslist.ElementDiffCallback.getColorToContentDescriptionString
+import com.example.colors.data.Color
 import com.example.colors.data.Element
 import com.example.colors.databinding.ColorItemBinding
 import kotlinx.android.synthetic.main.color_item.view.*

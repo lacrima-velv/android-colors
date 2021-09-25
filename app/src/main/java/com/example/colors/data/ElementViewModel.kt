@@ -8,8 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
-import com.example.colors.Color
-import com.example.colors.ColorsAdapter
+import com.example.colors.colorslist.ColorsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

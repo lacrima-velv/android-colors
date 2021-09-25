@@ -1,7 +1,6 @@
 package com.example.colors.data
 
 import android.content.Context
-import com.example.colors.Color
 import com.example.colors.R
 
 object InitialData {

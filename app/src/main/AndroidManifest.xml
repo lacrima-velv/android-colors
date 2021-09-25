@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:name=".ColorsActivity"
+            android:name=".colorslist.ColorsActivity"
             android:theme="@style/Theme.Colors"
             android:exported="true"/>
         <activity
-            android:name=".SplashActivity"
+            android:name=".splashscreen.SplashActivity"
             android:theme="@style/Theme.Colors.Splash"
             android:exported="true">
             <intent-filter>

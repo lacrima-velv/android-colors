@@ -1,9 +1,10 @@
-package com.example.colors
+package com.example.colors.splashscreen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import com.example.colors.colorslist.ColorsActivity
 import com.example.colors.databinding.ActivitySplashBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

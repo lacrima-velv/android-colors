@@ -29,10 +29,6 @@ class ColorsListFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-//        binding = DataBindingUtil.inflate(
-//            inflater, R.layout.fragment_colors_list, container, false
-//        )
-
         binding = FragmentColorsListBinding.inflate(inflater, container, false)
 
         // Open screen for creating a new Element by tapping FAB and give it its name.
