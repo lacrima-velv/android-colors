@@ -7,8 +7,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.RecyclerView
-import com.example.colors.colorslist.ColorsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -72,18 +70,19 @@ class ElementViewModel(application: Application): AndroidViewModel(application) 
     }
 
     // Must save placeholder view visibility as it resets to default visibility GONE
-    private val _emptyListPlaceholderVisibility = MutableLiveData<Int>()
+    private val _isEmptyListPlaceholderVisible = MutableLiveData<Boolean>()
 
-    val emptyListPlaceholderVisibility: LiveData<Int>
-    get() = _emptyListPlaceholderVisibility
+    val isEmptyListPlaceholderVisible: LiveData<Boolean>
+    get() = _isEmptyListPlaceholderVisible
 
-    fun setEmptyListPlaceholderVisibility(viewVisibility: Int) {
-        if (viewVisibility == View.VISIBLE ||
-            viewVisibility == View.INVISIBLE ||
-            viewVisibility == View.GONE) {
-            _emptyListPlaceholderVisibility.value = viewVisibility
-        } else
-            throw IllegalArgumentException("Provided argument must be one of View visibility states")
+    fun setIsEmptyListPlaceholderVisible(viewVisibility: Int) {
+        when (viewVisibility) {
+            View.VISIBLE -> _isEmptyListPlaceholderVisible.value = true
+            View.GONE -> _isEmptyListPlaceholderVisible.value = false
+            else -> throw IllegalArgumentException(
+                "Provided argument must be one of View visibility states: View.VISIBLE or View.GONE"
+            )
+        }
     }
 
     init {
@@ -129,49 +128,6 @@ class ElementViewModel(application: Application): AndroidViewModel(application) 
             }
         }
         doneAddingInitialElements()
-    }
-
-    /*
-    Function for setting ListObserver for RecyclerView.Adapter. It must save placeholder visibility
-    as a LiveData object because when you rotate the device the placeholder visibility resets to
-    default visibility GONE.
-     */
-    fun observeList(
-        adapter: ColorsAdapter,
-        recyclerView: RecyclerView,
-        placeholder: View,
-    ) = object : RecyclerView.AdapterDataObserver() {
-        /*
-        Set its default value to false because it is used to scroll to bottom when it is true.
-        Initially the list must be scrolled to the top.
-         */
-        val isNewElementAdded = onNewElementAdded.value?: false
-
-
-        override fun onChanged() {
-            super.onChanged()
-            checkEmpty()
-        }
-
-        override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-            if (isNewElementAdded) {
-                recyclerView.scrollToPosition(positionStart)
-                Log.d("ElementViewModel", "positionStart is $positionStart")
-                Log.d("ElementViewModel", "done scrolling to bottom")
-                doneAddingNewElement()
-            }
-            checkEmpty()
-        }
-
-        override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
-            super.onItemRangeRemoved(positionStart, itemCount)
-            checkEmpty()
-        }
-
-        fun checkEmpty() {
-            placeholder.visibility = if (adapter.itemCount == 0) View.VISIBLE else View.GONE
-            setEmptyListPlaceholderVisibility(placeholder.visibility)
-        }
     }
 
 }

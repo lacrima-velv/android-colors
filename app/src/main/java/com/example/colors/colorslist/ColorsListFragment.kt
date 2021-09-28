@@ -83,8 +83,11 @@ class ColorsListFragment : Fragment() {
         elementViewModel.onNewElementAdded.observe(viewLifecycleOwner) {}
 
         // Save placeholder visibility state
-        elementViewModel.emptyListPlaceholderVisibility.observe(viewLifecycleOwner) { visibility ->
-            binding.placeholder.visibility = visibility
+        elementViewModel.isEmptyListPlaceholderVisible.observe(viewLifecycleOwner) { isVisible ->
+            binding.placeholder.visibility = when (isVisible) {
+                false -> View.GONE
+                true -> View.VISIBLE
+            }
         }
 
         initRecyclerView(showSnackBarByTappingElement, showAlertDialogByTappingDelete)
@@ -128,13 +131,7 @@ class ColorsListFragment : Fragment() {
         Register an observer to List to scroll automatically to bottom when a new element is added
         and to set a placeholder when the list is empty
          */
-        listOfColorsAdapter.registerAdapterDataObserver(
-            elementViewModel.observeList(
-                listOfColorsAdapter,
-                binding.listOfColors,
-                binding.placeholder
-            )
-        )
+        listOfColorsAdapter.registerAdapterDataObserver(observeList())
     }
 
     // Lambda expression for onClickListener of Element in Recycler View
@@ -157,6 +154,45 @@ class ColorsListFragment : Fragment() {
         val action = ColorsListFragmentDirections
             .actionColorsListFragmentToDeleteElementDialogFragment(elementId, elementName)
         findNavController().navigate(action)
+    }
+
+    /*
+    Function for setting ListObserver for RecyclerView.Adapter. It must save placeholder visibility
+    as a LiveData object because when you rotate the device the placeholder visibility resets to
+    default visibility GONE.
+     */
+    private fun observeList() = object : RecyclerView.AdapterDataObserver() {
+        /*
+        Set its default value to false because it is used to scroll to bottom when it is true.
+        Initially the list must be scrolled to the top.
+         */
+        val isNewElementAdded = elementViewModel.onNewElementAdded.value?: false
+
+
+        override fun onChanged() {
+            super.onChanged()
+            checkEmpty()
+        }
+
+        override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+            if (isNewElementAdded) {
+                binding.listOfColors.scrollToPosition(positionStart)
+                Log.d("ElementViewModel", "positionStart is $positionStart")
+                Log.d("ElementViewModel", "done scrolling to bottom")
+                elementViewModel.doneAddingNewElement()
+            }
+            checkEmpty()
+        }
+
+        override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
+            super.onItemRangeRemoved(positionStart, itemCount)
+            checkEmpty()
+        }
+
+        fun checkEmpty() {
+            binding.placeholder.visibility = if (listOfColorsAdapter.itemCount == 0) View.VISIBLE else View.GONE
+            elementViewModel.setIsEmptyListPlaceholderVisible(binding.placeholder.visibility)
+        }
     }
 
 }
