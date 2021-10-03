@@ -39,8 +39,7 @@
     <dialog
         android:id="@+id/deleteElementDialogFragment"
         android:name="com.example.colors.colorslist.DeleteElementDialogFragment"
-        android:label="fragment_delete_element_dialog"
-        tools:layout="@layout/fragment_delete_element_dialog" >
+        android:label="fragment_delete_element_dialog">
         <argument
             android:name="elementId"
             app:argType="long" />
@@ -51,6 +50,5 @@
     <dialog
         android:id="@+id/deleteAllElementsDialogFragment"
         android:name="com.example.colors.colorslist.DeleteAllElementsDialogFragment"
-        android:label="fragment_delete_all_elements_dialog"
-        tools:layout="@layout/fragment_delete_all_elements_dialog" />
+        android:label="fragment_delete_all_elements_dialog" />
 </navigation>
